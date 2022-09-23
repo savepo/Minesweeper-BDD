@@ -1,5 +1,10 @@
+* {
+   
+}
+
 body {
     background-color: rgb(139, 184, 133);
+     background-image: url("img/img1.jpeg");
 }
 
 #board {
@@ -10,6 +15,7 @@ body {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    
 }  
 
 #board div {
@@ -22,4 +28,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#board div:hover {
+    
+}
+
+.container {
+    background-image: url("img1.jpg");
 }
