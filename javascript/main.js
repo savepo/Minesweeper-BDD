@@ -42,11 +42,13 @@ function printBoard() {
     for (let i = 0; i < columns; i++) {
         column = document.createElement("div");
         column.id = "column" + i.toString();
+        column.classList = "column";
         document.getElementById("board").append(column);
         for (let j = 0; j < rows; j++) {
             board[i][j] = document.createElement("div");
             board[i][j].id = i.toString() + "-" + j.toString();
             board[i][j].classList = "hidden";
+            board[i][j].classList.add("cell");
             document.getElementById("column" + i.toString()).append(board[i][j]);
         }
     }

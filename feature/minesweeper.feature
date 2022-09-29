@@ -20,16 +20,16 @@ Given the user opens the app
 
 Scenario: Default board --> All the cells should be hidden
 Then all the cells should be hidden
+@current
+Scenario Outline: Validating board dimensions
+Given the user loads the following mock data: "<board>"
+Then the number of rows in the board should be "<rows>"
+And the number of columns in the board should be "<columns>"
 
-# Scenario Outline: Validating board dimensions
-# Given the user loads the following mock data: "<board>"
-# Then the number of rows in the board should be "<rows>"
-# And the number of columns in the board should be "<columns>"
-
-# Examples:
-# |board    | rows | columns |
-# |*o-*o    | 2    | 2 |
-# |*ooo-*o*o| 3    | 4 |
+Examples:
+|board    | rows | columns |
+|*o-*o    | 2    | 2       |
+|*ooo-*o*o| 2    | 4       |
 
 # Scenario: Cell status by default: Hidden & enabled
 # Given the user loads the following mock data: "*o-*o"
