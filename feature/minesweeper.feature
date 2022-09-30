@@ -17,10 +17,10 @@ Background:
 Given the user opens the app
 
 # Board
-
+@current
 Scenario: Default board --> All the cells should be hidden
 Then all the cells should be hidden
-@current
+
 Scenario Outline: Validating board dimensions
 Given the user loads the following mock data: "<board>"
 Then the number of rows in the board should be "<rows>"
@@ -31,10 +31,14 @@ Examples:
 |*o-*o    | 2    | 2       |
 |*ooo-*o*o| 2    | 4       |
 
-# Scenario: Cell status by default: Hidden & enabled
+Scenario: Reveal a cell -->  the cell should show their content
+When the user reveals the cell "1-1"
+Then the cell "1-1" should be revealed
+
+
+# Scenario: Cell status by default: enabled
 # Given the user loads the following mock data: "*o-*o"
-# Then all the cells should be displayed hidden
-# And all the cells should be enabled
+# Then all the cells should be enabled
 
 # Scenario: Reseting the game, the default status should be set
 # Given Load mock data "*o*-oo*-**o"

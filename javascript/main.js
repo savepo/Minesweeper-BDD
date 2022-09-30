@@ -2,16 +2,17 @@ let boardSize = 8;
 let rows = 8;
 let columns = 8;
 let mines = 10;
-let board;
-
+let boardArray;
+let columnsArray;
 window.onload = function () {
-    if (window.location.search.includes("?")){
+    if (window.location.search.includes("?")) {
         calculateDimensionsFromMockData();
     }
-    createBoard();
-    printBoard()
-    
-  }
+    createBoardArrays();
+    createBoardElements();
+    printBoard();
+
+}
 
 // function createBoard() {
 //     for (let i = 0; i < boardSize; i++) {
@@ -27,33 +28,38 @@ window.onload = function () {
 
 function getMockData() {
     let MockData = window.location.search.split("?");
-    console.log(MockData);
 }
 
-function createBoard() {
-    board = new Array(rows);
+function createBoardArrays() {
+    boardArray = new Array(rows);
+    columnsArray = new Array(columns);
     for (let i = 0; i < columns; i++) {
-        board[i] = new Array(columns);
+        boardArray[i] = new Array(columns);
     }
-}   
+}
 
-function printBoard() {
-    let column;
+function createBoardElements() {
     for (let i = 0; i < columns; i++) {
-        column = document.createElement("div");
-        column.id = "column" + i.toString();
-        column.classList = "column";
-        document.getElementById("board").append(column);
+        columnsArray[i] = document.createElement("div");
+        columnsArray[i].id = "column" + i.toString();
+        columnsArray[i].classList = "column";
+        document.getElementById("board").append(columnsArray[i]);
         for (let j = 0; j < rows; j++) {
-            board[i][j] = document.createElement("div");
-            board[i][j].id = i.toString() + "-" + j.toString();
-            board[i][j].classList = "hidden";
-            board[i][j].classList.add("cell");
-            document.getElementById("column" + i.toString()).append(board[i][j]);
+            boardArray[i][j] = document.createElement("div");
+            boardArray[i][j].id = i.toString() + "-" + j.toString();
+            boardArray[i][j].classList = "hidden";
+            boardArray[i][j].classList.add("cell");
         }
     }
 }
 
+function printBoard() {
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            document.getElementById("column" + i.toString()).append(boardArray[i][j]);
+        }
+    }
+}
 
 
 function calculateDimensionsFromMockData() {
@@ -61,13 +67,12 @@ function calculateDimensionsFromMockData() {
     let MockData = ContentUrl[1].split("-");
     rows = MockData.length;
     columns = MockData[0].length;
-    console.log(MockData);
 }
 
 
 function setRandomMines() {
-    for (let i = 0; i < mines; i++) {  
-        
+    for (let i = 0; i < mines; i++) {
+
     }
 }
 
@@ -75,7 +80,7 @@ function checkAllCellsHidden() {
     for (let i = 0; i < columns; i++) {
 
         for (let j = 0; j < rows; j++) {
-            
+
         }
     }
 }
