@@ -1,65 +1,54 @@
 let boardSize = 8;
 let rows = 8;
 let columns = 8;
-let mines = 10;
+let numOfMines = 10;
 let boardArray;
 let columnsArray;
+let boardInformation;
 window.onload = function () {
     if (window.location.search.includes("?")) {
         calculateDimensionsFromMockData();
+        setBoardSize(rows, columns)
     }
-    createBoardArrays();
     createBoardElements();
-    printBoard();
-
+    createBoardInformation();
+    setRandomMines();
+    console.log(boardInformation);
 }
-
-// function createBoard() {
-//     for (let i = 0; i < boardSize; i++) {
-//         let row = []; 
-//         for (let j = 0; j < boardSize; j++) {
-//             let cell = document.createElement("div");
-//             cell.id = i.toString() + "-" + j.toString();
-//             document.getElementById("board").append(cell);
-//             row.push(cell);
-//         }
-//     }
-// }
 
 function getMockData() {
     let MockData = window.location.search.split("?");
 }
 
-function createBoardArrays() {
-    boardArray = new Array(rows);
-    columnsArray = new Array(columns);
-    for (let i = 0; i < columns; i++) {
-        boardArray[i] = new Array(columns);
-    }
-}
+
 
 function createBoardElements() {
-    for (let i = 0; i < columns; i++) {
-        columnsArray[i] = document.createElement("div");
-        columnsArray[i].id = "column" + i.toString();
-        columnsArray[i].classList = "column";
-        document.getElementById("board").append(columnsArray[i]);
-        for (let j = 0; j < rows; j++) {
-            boardArray[i][j] = document.createElement("div");
-            boardArray[i][j].id = i.toString() + "-" + j.toString();
-            boardArray[i][j].classList = "hidden";
-            boardArray[i][j].classList.add("cell");
+    let element;
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            element = document.createElement("div");
+            element.id = i.toString() + "-" + j.toString();
+            element.classList.add("hidden");
+            element.setAttribute("data-testid", i.toString() + "-" + j.toString());
+            document.getElementById("board").append(element)
         }
     }
 }
 
-function printBoard() {
-    for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < rows; j++) {
-            document.getElementById("column" + i.toString()).append(boardArray[i][j]);
+function createBoardInformation() {
+    boardInformation = [rows];
+    for (let i = 0; i < rows; i++) {
+        boardInformation[i] = [columns];
+    }
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            boardInformation[i][j] = "o";
         }
     }
+    console.log(boardInformation);
 }
+
 
 
 function calculateDimensionsFromMockData() {
@@ -71,8 +60,8 @@ function calculateDimensionsFromMockData() {
 
 
 function setRandomMines() {
-    for (let i = 0; i < mines; i++) {
-
+    for (let i = 0; i < numOfMines; i++) {
+        boardInformation[generateRandomInt(0, rows)][generateRandomInt(0, columns)];
     }
 }
 
@@ -84,3 +73,27 @@ function checkAllCellsHidden() {
         }
     }
 }
+
+function setBoardSize(rows, columns) {
+    let widthpx = 50 * columns;
+    let heightpx = 50 * rows;
+
+    document.getElementById("board").style.width = widthpx + "px";
+    document.getElementById("board").style.height = heightpx + "px";
+}
+
+function setMinesFromMockData() {
+
+}
+
+function setRandomMines() {
+    for (let i = 0; i < array.length; i++) {
+
+
+    }
+}
+
+function generateRandomInt(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
